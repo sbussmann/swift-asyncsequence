@@ -19,7 +19,10 @@ struct ContentView: View {
         .padding()
         .task {
 //            await printAllDoubles()
-            await containsExactNumber(126_877_000)
+//            await containsExactNumber(126_877_000)
+            for await count in Counter(limit: 12).filter({ $0 % 2 == 0 }) {
+                print(count)
+            }
         }
     }
     
