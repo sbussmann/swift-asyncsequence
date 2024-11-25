@@ -20,9 +20,16 @@ struct ContentView: View {
         .task {
 //            await printAllDoubles()
 //            await containsExactNumber(126_877_000)
-            for await count in Counter(limit: 12).filter({ $0 % 2 == 0 }) {
-                print(count)
-            }
+//            for await count in Counter(limit: 12).filter({ $0 % 2 == 0 }) {
+//                print(count)
+//            }
+            try? await printAllCounts()
+        }
+    }
+    
+    func printAllCounts() async throws {
+        for try await count in Sumerizer(limit: 12) {
+            print(count)
         }
     }
     
