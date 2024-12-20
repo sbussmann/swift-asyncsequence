@@ -28,8 +28,8 @@ struct ContentView: View {
     }
     
     func printAllCounts() async throws {
-        for try await count in Sumerizer(limit: 12) {
-            print(count)
+        for try await temporalFeature in Sumerizer(limit: 120000) {
+            print(temporalFeature)
         }
     }
     

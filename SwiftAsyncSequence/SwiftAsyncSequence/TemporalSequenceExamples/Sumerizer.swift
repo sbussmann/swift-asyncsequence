@@ -20,15 +20,19 @@ struct Sumerizer: TemporalSequence {
         
         let limitCount: Int
         
-        var innerCount = 1
+        var innerCount = 0
         
         mutating func next() async throws -> TemporalFeature<Int>? {
             
             guard innerCount <= limitCount else { return nil }
             
+            let coinFlip = Bool.random()
+            if coinFlip {
+                innerCount += 30000
+            }
             let result = innerCount
-            innerCount += 1
-            let temporalSegmentIdentifier = TemporalSegmentIdentifier(source: "test", range: 0..<result, timescale: result)
+            let temporalSegmentIdentifier = TemporalSegmentIdentifier(source: "test", range: 0..<30000, timescale: 30000)
+            print(temporalSegmentIdentifier.durationInSeconds)
             return TemporalFeature(id: temporalSegmentIdentifier, feature: result)
         }
     }
