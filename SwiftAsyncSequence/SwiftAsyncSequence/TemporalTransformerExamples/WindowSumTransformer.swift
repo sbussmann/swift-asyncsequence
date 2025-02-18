@@ -8,9 +8,38 @@
 import CreateMLComponents
 import Foundation
 
+struct WindowSumPipeline {
+    
+    let pipeline = Downsampler(factor: 1)
+    
+        .appending(SlidingWindowTransformer<Float>(stride: 60, length: 20))
+    
+        .appending(WindowSumTransformer())
+    
+    func sum(_ floatStream: AnyTemporalSequence<Float>) async throws -> WindowSumTransformer.CumulativeSumSequence {
+        print("floatStream: \(floatStream)")
+        return try await pipeline(floatStream)
+    }
+}
+
 struct WindowSumTransformer: TemporalTransformer {
     func applied<S>(to input: S, eventHandler: EventHandler?) async throws -> CumulativeSumSequence where S : TemporalSequence, [Float] == S.Feature {
-        return CumulativeSumSequence(limit: input.count)
+        
+        print("input: \(input)")
+        
+        // model 
+        var totalSum = Float(0)
+        for try await value in input {
+            let windowSum = value.feature.reduce(0, +)
+            totalSum += abs(windowSum)
+            print("totalSum: \(totalSum)")
+            if totalSum > 10 {
+                print("exited for loop in WindowSumTransformer applied method")
+                return CumulativeSumSequence(limit: 30, count: Int(totalSum))
+            }
+        }
+//        let count = input.count ?? 30
+        return CumulativeSumSequence(limit: 30.0, count: Int(totalSum))
 //        return
     }
     
@@ -28,7 +57,8 @@ struct WindowSumTransformer: TemporalTransformer {
         var count: Int?
         
         func makeAsyncIterator() -> AsyncIterator {
-            AsyncIterator(limitCount: limit, count: count)
+            print("count inside makeAsyncIterator: \(count ?? 10000)")
+            return AsyncIterator(limitCount: limit, count: count)
         }
         
         struct AsyncIterator: AsyncIteratorProtocol {
@@ -40,7 +70,9 @@ struct WindowSumTransformer: TemporalTransformer {
 
             mutating func next() async throws -> TemporalFeature<Float>? {
                 
+                print("limitCount: \(limitCount), innerCount: \(innerCount)")
                 guard innerCount <= limitCount else { return nil }
+                print("count: \(count ?? 10000)")
                 guard var count else { return nil }
                 
                 let coinFlip = Bool.random()

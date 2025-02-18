@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		669D8F912D3D4BF40087BCD4 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 669D8F902D3D4BF40087BCD4 /* AsyncAlgorithms */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		66A07B6B2CE84FAD009345DC /* SwiftAsyncSequence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAsyncSequence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669D8F912D3D4BF40087BCD4 /* AsyncAlgorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = SwiftAsyncSequence;
 			packageProductDependencies = (
+				669D8F902D3D4BF40087BCD4 /* AsyncAlgorithms */,
 			);
 			productName = SwiftAsyncSequence;
 			productReference = 66A07B6B2CE84FAD009345DC /* SwiftAsyncSequence.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 66A07B622CE84FAD009345DC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				669D8F8F2D3D4BF40087BCD4 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 66A07B6C2CE84FAD009345DC /* Products */;
 			projectDirPath = "";
@@ -255,6 +264,7 @@
 				DEVELOPMENT_TEAM = H9P4QX4Z4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need the camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +294,7 @@
 				DEVELOPMENT_TEAM = H9P4QX4Z4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need the camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -324,6 +335,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		669D8F8F2D3D4BF40087BCD4 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		669D8F902D3D4BF40087BCD4 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 669D8F8F2D3D4BF40087BCD4 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 66A07B632CE84FAD009345DC /* Project object */;
 }
