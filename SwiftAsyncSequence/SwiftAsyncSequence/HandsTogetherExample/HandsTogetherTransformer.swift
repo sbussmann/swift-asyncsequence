@@ -71,18 +71,18 @@ struct HandsTogetherTransformer: TemporalTransformer {
 //        }
         
         // model 
-//        var windowNum = 0
-//        for try await value in input {
-//            print("value.id.range: \(value.id.range)")
-//            for pose in value.feature {
-//                let distance = distanceInFrame(pose: pose)
-//                guard let distance else { continue }
-//                print("distance: \(distance)")
-//                if distance < 0.1 {
-//                    closeCount += 1
-//                }
-//            }
-//        }
+        var windowNum = 0
+        for try await value in input {
+            print("value.id.range: \(value.id.range)")
+            for pose in value.feature {
+                let distance = distanceInFrame(pose: pose)
+                guard let distance else { continue }
+                print("distance: \(distance)")
+                if distance < 0.1 {
+                    closeCount += 1
+                }
+            }
+        }
 //        let count = input.count ?? 30
         let id = TemporalSegmentIdentifier(source: "test", range: 0..<30, timescale: 30)
 
@@ -113,7 +113,7 @@ struct HandsTogetherTransformer: TemporalTransformer {
 
             mutating func next() async throws -> TemporalFeature<Int>? {
                 
-//                print("count: \(count ?? 10000)")
+                print("count: \(count ?? 10000)")
                 guard var count else { return nil }
                 
 //                let coinFlip = Bool.random()
